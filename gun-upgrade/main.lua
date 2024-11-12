@@ -7,14 +7,14 @@ Config = {
 
 function Client.OnStart()
     _DEBUG = true
-    _HASH = "master"
-    _LATEST_LINK = "https://raw.githubusercontent.com/cubzh/cubzh-minigames/gun-upgrade/" .. _HASH .. "/"
+    _HASH = "01ca769"
+    _LATEST_LINK = "https://raw.githubusercontent.com/Nanskip/cubzh-minigames/" .. _HASH .. "/gun-upgrade/"
     _LOADALL()
 end
 
 _LOAD_LIST = {
     modules = {
-        -- modules
+        game = "modules/game.lua",
     },
     images = {
         -- images
@@ -41,10 +41,10 @@ function _LOAD_MODULES()
     for k, v in pairs(_LOAD_LIST.modules) do
         local downloaded = 0
     
-        for k, v in pairs(modules) do
+        for k, v in pairs(_LOAD_LIST.modules) do
             HTTP:Get(_LATEST_LINK .. v, function(response)
                 if response.StatusCode ~= 200 then
-                    print("Error downloading " .. k .. ". Code: " .. response.StatusCode)
+                    print("Error downloading [" .. k .. ".lua]. Code: " .. response.StatusCode)
     
                     return
                 end
@@ -53,7 +53,7 @@ function _LOAD_MODULES()
                 log("Module [".. k.. ".lua] downloaded.")
     
                 downloaded = downloaded + 1
-                if downloaded == tableLength(modules) then
+                if downloaded == tableLength(_LOAD_LIST.modules) then
                     log("Downloaded all required modules.")
                     _INIT_MODULES()
                 end
@@ -64,7 +64,7 @@ end
 
 function _INIT_MODULES()
     log("Initializing modules...")
-    for k, v in pairs(modules) do
+    for k, v in pairs(_LOAD_LIST.modules) do
         if _ENV[k].INIT ~= nil then
             local initialized = _ENV[k]:INIT()
             if initialized then
