@@ -9,7 +9,7 @@ Config = {
 
 function Client.OnStart()
     _DEBUG = true
-    _HASH = "0bfaf7e"
+    _HASH = "a72a516"
     _LATEST_LINK = "https://raw.githubusercontent.com/Nanskip/cubzh-minigames/" .. _HASH .. "/gun-upgrade/"
     _LOADALL()
 end
@@ -19,7 +19,7 @@ _LOAD_LIST = {
         game = "modules/game.lua",
     },
     images = {
-        icon = "images/icon.jpg",
+        icon = "images/icon.png",
     },
     sounds = {
         -- sounds
@@ -82,7 +82,7 @@ function _INIT_MODULES()
 end
 
 function _LOAD_IMAGES()
-    log("Need to download " .. tableLength(_LOAD_LIST.images) .. " IMAGE files.")
+    log("Need to download " .. tableLength(_LOAD_LIST.images) .. " image files.")
     _IMAGES = {}
     for k, v in pairs(_LOAD_LIST.images) do
         local downloaded = 0
