@@ -1,15 +1,17 @@
 -- GUN UPGRADE GAME --
+-- Used alot of flafilez's models. Thank you very much!
 
 Config = {
     Map = nil,
     Items = {
-
+        "voxels.silver_pistol", "nanskip.ca_bullet"
     }
 }
 
 function Client.OnStart()
     _DEBUG = true
-    _HASH = "a72a516"
+    _HASH = "4d8eb59"
+
     _LATEST_LINK = "https://raw.githubusercontent.com/Nanskip/cubzh-minigames/" .. _HASH .. "/gun-upgrade/"
     _LOADALL()
 end
@@ -20,6 +22,7 @@ _LOAD_LIST = {
     },
     images = {
         icon = "images/icon.png",
+        floor = "images/floor.png",
     },
     sounds = {
         -- sounds
