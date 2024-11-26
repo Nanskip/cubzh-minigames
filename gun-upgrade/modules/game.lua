@@ -56,10 +56,29 @@ function game.create_choose(self, level, config)
     choose:SetParent(World)
 
     choose.pimpochka = Quad()
-    choose.pimpochka.Color = Color(255, 255, 255, 100)
+    choose.pimpochka.Color = Color(255, 255, 255, 255)
     choose.pimpochka.Position = Number3(plus+5, 15, (level - 1 + 0.5) * 150)
     choose.pimpochka.Scale = Number3(5, 3, 1)
     choose.pimpochka:SetParent(World)
+
+    choose.borders = {}
+    choose.borders[1] = Quad()
+    choose.borders[1].Color = Color(255, 255, 255, 255)
+    choose.borders[1].Position = Number3(plus, 0, (level - 1 + 0.5) * 150 - 0.01)
+    choose.borders[1].Scale = Number3(1, 15, 1)
+    choose.borders[1]:SetParent(World)
+
+    choose.borders[2] = Quad()
+    choose.borders[2].Color = Color(255, 255, 255, 255)
+    choose.borders[2].Position = Number3(plus+14, 0, (level - 1 + 0.5) * 150 - 0.01)
+    choose.borders[2].Scale = Number3(1, 15, 1)
+    choose.borders[2]:SetParent(World)
+
+    choose.borders[3] = Quad()
+    choose.borders[3].Color = Color(255, 255, 255, 255)
+    choose.borders[3].Position = Number3(plus, 15, (level - 1 + 0.5) * 150 - 0.01)
+    choose.borders[3].Scale = Number3(15, 1, 1)
+    choose.borders[3]:SetParent(World)
 
     choose.name_text = Text()
     choose.name_text.Text = cfg.name
@@ -75,7 +94,7 @@ function game.create_choose(self, level, config)
     choose.action_text.Text = act_text
     choose.action_text.Color = Color(255, 255, 255, 255)
     choose.action_text.BackgroundColor = Color(0, 0, 0, 0)
-    choose.action_text.Position = Number3(7.5 + plus, 17, (level - 1 + 0.5) * 150 - 0.01)
+    choose.action_text.Position = Number3(7.5 + plus, 16.5, (level - 1 + 0.5) * 150 - 0.01)
     choose.action_text.Scale = 1.2
     choose.action_text:SetParent(World)
 
@@ -84,11 +103,17 @@ function game.create_choose(self, level, config)
     if cfg.current >= 0 then
         cur_text = "+" .. cfg.current
         choose.Color = Color(128, 255, 145, 100)
-        choose.pimpochka.Color = Color(128, 255, 145, 100)
+        choose.pimpochka.Color = Color(128, 255, 145, 255)
+        choose.borders[1].Color = Color(128, 255, 145, 255)
+        choose.borders[2].Color = Color(128, 255, 145, 255)
+        choose.borders[3].Color = Color(128, 255, 145, 255)
     else
         cur_text = cfg.current
         choose.Color = Color(204, 81, 59, 100)
-        choose.pimpochka.Color = Color(204, 81, 59, 100)
+        choose.pimpochka.Color = Color(204, 81, 59, 255)
+        choose.borders[1].Color = Color(204, 81, 59, 255)
+        choose.borders[2].Color = Color(204, 81, 59, 255)
+        choose.borders[3].Color = Color(204, 81, 59, 255)
     end
     choose.current_text.Text = cur_text
     choose.current_text.Color = Color(255, 255, 255, 255)
