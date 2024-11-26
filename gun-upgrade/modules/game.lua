@@ -55,6 +55,12 @@ function game.create_choose(self, level, config)
     choose.Scale = Number3(15, 15, 1)
     choose:SetParent(World)
 
+    choose.pimpochka = Quad()
+    choose.pimpochka.Color = Color(255, 255, 255, 100)
+    choose.pimpochka.Position = Number3(plus+5, 15, (level - 1 + 0.5) * 150)
+    choose.pimpochka.Scale = Number3(5, 3, 1)
+    choose.pimpochka:SetParent(World)
+
     choose.name_text = Text()
     choose.name_text.Text = cfg.name
     choose.name_text.Color = Color(255, 255, 255, 255)
@@ -78,9 +84,11 @@ function game.create_choose(self, level, config)
     if cfg.current >= 0 then
         cur_text = "+" .. cfg.current
         choose.Color = Color(128, 255, 145, 100)
+        choose.pimpochka.Color = Color(128, 255, 145, 100)
     else
         cur_text = cfg.current
         choose.Color = Color(204, 81, 59, 100)
+        choose.pimpochka.Color = Color(204, 81, 59, 100)
     end
     choose.current_text.Text = cur_text
     choose.current_text.Color = Color(255, 255, 255, 255)
