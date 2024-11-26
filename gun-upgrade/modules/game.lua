@@ -24,8 +24,8 @@ game.create_level = function(self, levels)
         level.floor.Image = _IMAGES.floor
 
         level.choose = {}
-        level.choose[1] = game:create_choose(i, {})
-        level.choose[2] = game:create_choose(i, {second = true})
+        level.choose[1] = game:create_choose(i, {action = math.random(-3, 3), current = math.random(-3, 3)*10, second = false})
+        level.choose[2] = game:create_choose(i, {action = math.random(-3, 3), current = math.random(-3, 3)*10, second = true})
     end
 end
 
@@ -59,7 +59,7 @@ function game.create_choose(self, level, config)
     choose.name_text.Text = cfg.name
     choose.name_text.Color = Color(255, 255, 255, 255)
     choose.name_text.BackgroundColor = Color(0, 0, 0, 0)
-    choose.name_text.Position = Number3(7.5 + plus, 10, (level - 1 + 0.5) * 150)
+    choose.name_text.Position = Number3(7.5 + plus, 12.5, (level - 1 + 0.5) * 150 - 0.01)
     choose.name_text.Scale = 1.3
     choose.name_text:SetParent(World)
 
@@ -69,7 +69,7 @@ function game.create_choose(self, level, config)
     choose.action_text.Text = act_text
     choose.action_text.Color = Color(255, 255, 255, 255)
     choose.action_text.BackgroundColor = Color(0, 0, 0, 0)
-    choose.action_text.Position = Number3(7.5 + plus, 15, (level - 1 + 0.5) * 150)
+    choose.action_text.Position = Number3(7.5 + plus, 20, (level - 1 + 0.5) * 150 - 0.01)
     choose.action_text.Scale = 1.2
     choose.action_text:SetParent(World)
 
@@ -85,7 +85,7 @@ function game.create_choose(self, level, config)
     choose.current_text.Text = cur_text
     choose.current_text.Color = Color(255, 255, 255, 255)
     choose.current_text.BackgroundColor = Color(0, 0, 0, 0)
-    choose.current_text.Position = Number3(7.5 + plus, 3, (level - 1 + 0.5) * 150)
+    choose.current_text.Position = Number3(7.5 + plus, 5, (level - 1 + 0.5) * 150 - 0.01)
     choose.current_text.Scale = 3
     choose.current_text:SetParent(World)
 
