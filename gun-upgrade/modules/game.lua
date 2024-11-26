@@ -18,7 +18,7 @@ game.create_level = function(self, levels)
         local level = {}
         level.floor = Quad()
         level.floor.Rotation.X = math.pi/2
-        level.floor.Position = Number3((i - 1) * 150, 0, 0)
+        level.floor.Position = Number3(0, 0, (i - 1) * 150)
         level.floor.Scale = Number3(30, 150, 1)
         level.floor:SetParent(World)
         level.floor.Image = _IMAGES.floor
@@ -45,10 +45,13 @@ function game.create_choose(self, level, config)
             cfg[k] = config[k]
         end
     end
-
+    local plus = 0
+    if cfg.second then
+        plus = 15
+    end
     local choose = Quad()
     choose.Color = Color(255, 255, 255, 100)
-    choose.Position = Number3((level - 1 + 0.5) * 150, 0, 0)
+    choose.Position = Number3(7.5 + plus, 0, (level - 1 + 0.5) * 150)
     choose.Scale = Number3(15, 15, 1)
     choose:SetParent(World)
 
@@ -56,7 +59,7 @@ function game.create_choose(self, level, config)
     choose.name_text.Text = cfg.name
     choose.name_text.Color = Color(255, 255, 255, 255)
     choose.name_text.BackgroundColor = Color(0, 0, 0, 0)
-    choose.name_text.Position = Number3(0, 10, (level - 1 + 0.5) * 150)
+    choose.name_text.Position = Number3(7.5 + plus, 10, (level - 1 + 0.5) * 150)
     choose.name_text.Scale = Number3(1, 1, 1)
     choose.name_text.Rotation.Y = math.pi
     choose.name_text:SetParent(choose)
@@ -67,7 +70,7 @@ function game.create_choose(self, level, config)
     choose.action_text.Text = cfg.action
     choose.action_text.Color = Color(255, 255, 255, 255)
     choose.action_text.BackgroundColor = Color(0, 0, 0, 0)
-    choose.action_text.Position = Number3(0, 7, (level - 1 + 0.5) * 150)
+    choose.action_text.Position = Number3(7.5 + plus, 7, (level - 1 + 0.5) * 150)
     choose.action_text.Scale = 0.75
     choose.action_text.Rotation.Y = math.pi
     choose.action_text:SetParent(choose)
@@ -84,7 +87,7 @@ function game.create_choose(self, level, config)
     choose.current_text.Text = cfg.current
     choose.current_text.Color = Color(255, 255, 255, 255)
     choose.current_text.BackgroundColor = Color(0, 0, 0, 0)
-    choose.current_text.Position = Number3(0, 3, (level - 1 + 0.5) * 150)
+    choose.current_text.Position = Number3(7.5 + plus, 3, (level - 1 + 0.5) * 150)
     choose.current_text.Scale = 1.25
     choose.current_text.Rotation.Y = math.pi
     choose.current_text:SetParent(choose)
