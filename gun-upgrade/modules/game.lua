@@ -65,11 +65,11 @@ function game.create_choose(self, level, config)
 
     choose.action_text = Text()
     local act_text = ""
-    if cfg.action >= 0 then act_text = "+" .. cfg.action else act_text = "-" .. cfg.action end
+    if cfg.action >= 0 then act_text = "+" .. cfg.action else act_text = cfg.action end
     choose.action_text.Text = act_text
     choose.action_text.Color = Color(255, 255, 255, 255)
     choose.action_text.BackgroundColor = Color(0, 0, 0, 0)
-    choose.action_text.Position = Number3(7.5 + plus, 20, (level - 1 + 0.5) * 150 - 0.01)
+    choose.action_text.Position = Number3(7.5 + plus, 17, (level - 1 + 0.5) * 150 - 0.01)
     choose.action_text.Scale = 1.2
     choose.action_text:SetParent(World)
 
@@ -79,7 +79,7 @@ function game.create_choose(self, level, config)
         cur_text = "+" .. cfg.current
         choose.Color = Color(128, 255, 145, 100)
     else
-        cur_text = "-" .. cfg.current
+        cur_text = cfg.current
         choose.Color = Color(204, 81, 59, 100)
     end
     choose.current_text.Text = cur_text
