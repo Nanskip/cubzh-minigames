@@ -10,7 +10,7 @@ Config = {
 
 function Client.OnStart()
     _DEBUG = true
-    _HASH = "4d8eb59"
+    _HASH = "35b3a63"
 
     _LATEST_LINK = "https://raw.githubusercontent.com/Nanskip/cubzh-minigames/" .. _HASH .. "/gun-upgrade/"
     _LOADALL()
@@ -43,9 +43,9 @@ end
 
 function _LOAD_MODULES()
     log("Need to download " .. tableLength(_LOAD_LIST.modules) .. " module files.")
-    for k, v in pairs(_LOAD_LIST.modules) do
-        local downloaded = 0
+    local downloaded = 0
     
+    for k, v in pairs(_LOAD_LIST.modules) do    
         HTTP:Get(_LATEST_LINK .. v, function(response)
             if response.StatusCode ~= 200 then
                 log("Error downloading [" .. k .. ".lua]. Code: " .. response.StatusCode, "ERROR")
@@ -59,7 +59,7 @@ function _LOAD_MODULES()
             downloaded = downloaded + 1
             if downloaded == tableLength(_LOAD_LIST.modules) then
                 log("Downloaded all required module files.")
-                _INIT_MODULES()
+                _LOAD_IMAGES()
             end
         end)
     end
@@ -81,15 +81,15 @@ function _INIT_MODULES()
     end
 
     log("All modules have been initialized.")
-    _LOAD_IMAGES()
+    _FINISH()
 end
 
 function _LOAD_IMAGES()
     log("Need to download " .. tableLength(_LOAD_LIST.images) .. " image files.")
     _IMAGES = {}
-    for k, v in pairs(_LOAD_LIST.images) do
-        local downloaded = 0
+    local downloaded = 0
 
+    for k, v in pairs(_LOAD_LIST.images) do
         HTTP:Get(_LATEST_LINK .. v, function(response)
             if response.StatusCode ~= 200 then
                 log("Error downloading [" .. k .. "] image. Code: " .. response.StatusCode, "ERROR")
@@ -103,7 +103,7 @@ function _LOAD_IMAGES()
             downloaded = downloaded + 1
             if downloaded == tableLength(_LOAD_LIST.images) then
                 log("Downloaded all required image files.")
-                _FINISH()
+                _INIT_MODULES()
             end
         end)
     end
