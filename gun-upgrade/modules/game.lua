@@ -5,8 +5,8 @@ game.INIT = function(self)
 
     game:create_level(5)
     
-    Camera:SetModeFree()
-    Camera.Position = Number3(15, 100, 0)
+    --Camera:SetModeFree()
+    --Camera.Position = Number3(15, 100, 0)
 
     return true
 end
@@ -51,7 +51,7 @@ function game.create_choose(self, level, config)
     end
     local choose = Quad()
     choose.Color = Color(255, 255, 255, 100)
-    choose.Position = Number3(7.5 + plus, 0, (level - 1 + 0.5) * 150)
+    choose.Position = Number3(plus, 0, (level - 1 + 0.5) * 150)
     choose.Scale = Number3(15, 15, 1)
     choose:SetParent(World)
 
