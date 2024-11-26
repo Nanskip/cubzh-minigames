@@ -56,8 +56,9 @@ function game.create_choose(self, level, config)
     choose.name_text.Text = cfg.name
     choose.name_text.Color = Color(255, 255, 255, 255)
     choose.name_text.BackgroundColor = Color(0, 0, 0, 0)
-    choose.name_text.Position = Number3((level - 1 + 0.5) * 150, 10, 0)
+    choose.name_text.Position = Number3(0, 10, (level - 1 + 0.5) * 150)
     choose.name_text.Scale = Number3(1, 1, 1)
+    choose.name_text.Rotation.Y = math.pi
     choose.name_text:SetParent(choose)
 
     choose.action_text = Text()
@@ -66,8 +67,9 @@ function game.create_choose(self, level, config)
     choose.action_text.Text = cfg.action
     choose.action_text.Color = Color(255, 255, 255, 255)
     choose.action_text.BackgroundColor = Color(0, 0, 0, 0)
-    choose.action_text.Position = Number3((level - 1 + 0.5) * 150, 7, 0)
+    choose.action_text.Position = Number3(0, 7, (level - 1 + 0.5) * 150)
     choose.action_text.Scale = 0.75
+    choose.action_text.Rotation.Y = math.pi
     choose.action_text:SetParent(choose)
 
     choose.current_text = Text()
@@ -82,8 +84,9 @@ function game.create_choose(self, level, config)
     choose.current_text.Text = cfg.current
     choose.current_text.Color = Color(255, 255, 255, 255)
     choose.current_text.BackgroundColor = Color(0, 0, 0, 0)
-    choose.current_text.Position = Number3((level - 1 + 0.5) * 150, 3, 0)
+    choose.current_text.Position = Number3(0, 3, (level - 1 + 0.5) * 150)
     choose.current_text.Scale = 1.25
+    choose.current_text.Rotation.Y = math.pi
     choose.current_text:SetParent(choose)
 
     return choose
