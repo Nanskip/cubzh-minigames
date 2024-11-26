@@ -62,35 +62,35 @@ function game.create_choose(self, level, config)
     choose.name_text.Position = Number3(7.5 + plus, 10, (level - 1 + 0.5) * 150)
     choose.name_text.Scale = Number3(1, 1, 1)
     choose.name_text.Rotation.Y = math.pi
-    choose.name_text:SetParent(choose)
+    choose.name_text:SetParent(World)
 
     choose.action_text = Text()
     local act_text = ""
     if cfg.action >= 0 then act_text = "+" .. cfg.action else act_text = "-" .. cfg.action end
-    choose.action_text.Text = cfg.action
+    choose.action_text.Text = act_text
     choose.action_text.Color = Color(255, 255, 255, 255)
     choose.action_text.BackgroundColor = Color(0, 0, 0, 0)
     choose.action_text.Position = Number3(7.5 + plus, 7, (level - 1 + 0.5) * 150)
     choose.action_text.Scale = 0.75
     choose.action_text.Rotation.Y = math.pi
-    choose.action_text:SetParent(choose)
+    choose.action_text:SetParent(World)
 
     choose.current_text = Text()
-    local act_text = ""
+    local cur_text = ""
     if cfg.current >= 0 then
-        act_text = "+" .. cfg.current
+        cur_text = "+" .. cfg.current
         choose.Color = Color(128, 255, 145, 100)
     else
-        act_text = "-" .. cfg.current
+        cur_text = "-" .. cfg.current
         choose.Color = Color(204, 81, 59, 100)
     end
-    choose.current_text.Text = cfg.current
+    choose.current_text.Text = cur_text
     choose.current_text.Color = Color(255, 255, 255, 255)
     choose.current_text.BackgroundColor = Color(0, 0, 0, 0)
     choose.current_text.Position = Number3(7.5 + plus, 3, (level - 1 + 0.5) * 150)
     choose.current_text.Scale = 1.25
     choose.current_text.Rotation.Y = math.pi
-    choose.current_text:SetParent(choose)
+    choose.current_text:SetParent(World)
 
     return choose
 end
