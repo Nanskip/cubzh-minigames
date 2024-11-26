@@ -48,7 +48,7 @@ function game.create_choose(self, level, config)
 
     local choose = Quad()
     choose.Color = Color(255, 255, 255, 100)
-    choose.Position = Number3((i - 1 + 0.5) * 150, 0, 0)
+    choose.Position = Number3((level - 1 + 0.5) * 150, 0, 0)
     choose.Scale = Number3(15, 15, 1)
     choose:SetParent(World)
 
