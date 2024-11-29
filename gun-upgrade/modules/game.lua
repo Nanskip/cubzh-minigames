@@ -3,6 +3,17 @@ local game = {}
 game.INIT = function(self)
     game.map = {}
     game:start()
+    game.control = LocalEvent:Listen(LocalEvent.Name.AnalogPad, function(dx, dy)
+        if game.gun ~= nil then
+            game.gun.Position = game.gun.Position + Number3(dx, 0, 0)
+
+            if game.gun.Position.X < 0 then
+                game.gun.Position.X = 0
+            elseif game.gun.Position.X > 30 then
+                game.gun.Position.X = 30
+            end
+        end
+    end)
 
     return true
 end
