@@ -28,6 +28,7 @@ function guns.create(self, config)
     gun.ammo = config.ammo
     gun.speed = config.speed
     gun.life = config.life
+    gun.ticks = 0
 
     gun.Scale = 0.5
     gun.Position = Number3(15, 10, 0)
@@ -37,7 +38,7 @@ function guns.create(self, config)
             s:t()
         end
 
-        s.ticks = s.tick + dt
+        s.ticks = s.ticks + dt
         if s.ticks >= s.reload_time then
             s.ticks = 0
             local bullet = guns:bullet(s)
