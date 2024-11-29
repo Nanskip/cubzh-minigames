@@ -10,7 +10,7 @@ Config = {
 
 function Client.OnStart()
     _DEBUG = true
-    _HASH = "d839478"
+    _HASH = "5838609"
 
     _LATEST_LINK = "https://raw.githubusercontent.com/Nanskip/cubzh-minigames/" .. _HASH .. "/gun-upgrade/"
     _LOADALL()

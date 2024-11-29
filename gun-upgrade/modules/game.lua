@@ -126,7 +126,7 @@ game.start = function(self)
     game:create_level(5)
 
     self.gun = guns:create()
-    gun.t = function(s)
+    self.gun.t = function(s)
         Camera.Position = Number3(15, 10, s.Position.Z - 20)
     end
 end
