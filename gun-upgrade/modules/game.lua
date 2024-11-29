@@ -68,7 +68,7 @@ function game.create_choose(self, level, config)
     local choose = Quad()
     choose.Color = Color(255, 255, 255, 100)
     choose.Position = Number3(plus, 0, (level - 1 + 0.5) * 150)
-    choose.Scale = Number3(15, 15, 1)
+    choose.Scale = Number3(14, 15, 1)
     choose.Physics = PhysicsMode.Trigger
     choose.current = cfg.current
     choose.action = cfg.action
