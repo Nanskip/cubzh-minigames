@@ -5,16 +5,14 @@ game.INIT = function(self)
     game:start()
     self.point = {x = 0, y = 0}
     game.click = LocalEvent:Listen(LocalEvent.Name.PointerDown, function(payload)
-        print("start: ", payload.X, payload.Y)
         self.point.x = payload.X
         self.point.y = payload.Y
     end)
     game.control = LocalEvent:Listen(LocalEvent.Name.PointerDrag, function(payload)
-        print("drag: ", payload.X, payload.Y)
         local dx = payload.X - self.point.x
         local dy = payload.Y - self.point.y
         if game.gun ~= nil then
-            game.gun.Position = game.gun.Position + Number3(dx, 0, 0)
+            game.gun.Position = game.gun.Position + Number3(dx*20, 0, 0)
 
             if game.gun.Position.X < 0 then
                 game.gun.Position.X = 0
