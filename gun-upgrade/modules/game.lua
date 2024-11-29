@@ -203,7 +203,7 @@ end
 
 game.start = function(self)
     Camera:SetModeFree()
-    Camera.Rotation.X = 0.4
+    Camera.Rotation.X = 0.3
     Camera.FOV = 35
     game:create_level(20)
 
