@@ -123,12 +123,13 @@ end
 
 game.start = function(self)
     Camera:SetModeFree()
+    Camera.Rotation.X = 0.3
     game:create_level(5)
 
     self.gun = guns:create()
     self.gun:SetParent(World)
     self.gun.t = function(s)
-        Camera.Position = Number3(15, 10, s.Position.Z - 20)
+        Camera.Position = Number3(15, 20, s.Position.Z - 20)
     end
 end
 
