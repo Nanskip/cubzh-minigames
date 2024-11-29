@@ -9,8 +9,8 @@ game.INIT = function(self)
         self.point.y = payload.Y
     end)
     game.control = LocalEvent:Listen(LocalEvent.Name.PointerDrag, function(payload)
-        local dx = payload.X - self.point.x
-        local dy = payload.Y - self.point.y
+        local dx = self.point.x - payload.X
+        local dy = self.point.y - payload.Y
         if game.gun ~= nil then
             game.gun.Position = game.gun.Position + Number3(dx, 0, 0)
 
