@@ -30,6 +30,7 @@ end
 game.create_level = function(self, levels)
     self.levels = {}
 
+    local names = {"Reload Time", "Damage", "Speed", "Life"}
     for i=1, levels do
         local level = {}
         level.floor = Quad()
@@ -40,8 +41,18 @@ game.create_level = function(self, levels)
         level.floor.Image = _IMAGES.floor
 
         level.choose = {}
-        level.choose[1] = game:create_choose(i, {action = math.random(-3, 3), current = math.random(-3, 3)*10, second = false})
-        level.choose[2] = game:create_choose(i, {action = math.random(-3, 3), current = math.random(-3, 3)*10, second = true})
+        level.choose[1] = game:create_choose(i, {
+            action = math.random(-3, 3),
+            current = math.random(-3, 3)*10,
+            name = names[math.random(1, #names)],
+            second = false
+        })
+        level.choose[2] = game:create_choose(i, {
+            action = math.random(-3, 3),
+            current = math.random(-3, 3)*10,
+            name = names[math.random(1, #names)],
+            second = true
+        })
     end
 end
 
@@ -78,6 +89,18 @@ function game.create_choose(self, level, config)
 
             first.current = first.current + first.action
             first:update()
+        elseif other.type == "gun" then
+            if first.name == "Reload Time" then
+                other.reload_time = other.reload_time - first.current*0.1
+            elseif first.name == "Damage" then
+                other.damage = other.damage + first.current*0.1
+            elseif first.name == "Speed" then
+                other.speed = other.speed + first.current*0.1
+            elseif first.name == "Life" then
+                other.life = other.life + first.current*0.1
+            else
+                log("Unknown gun setting.", "ERROR")
+            end
         end
     end
     choose:SetParent(World)
