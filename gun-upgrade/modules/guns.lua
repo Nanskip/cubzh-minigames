@@ -32,8 +32,9 @@ function guns.create(self, config)
 
     gun.Scale = 0.5
     gun.Position = Number3(15, 10, 0)
+    gun.Rotation.Y = math.pi
     gun.Tick = function(s, dt)
-        s.Position = s.Position + s.Forward * s.speed*0.05
+        s.Position = s.Position + Number3(1, 0, 0) * s.speed*0.05
         if s.t ~= nil then
             s:t()
         end
@@ -42,7 +43,7 @@ function guns.create(self, config)
         if s.ticks >= s.reload_time then
             s.ticks = 0
             local bullet = guns:bullet(s)
-            bullet.Position = s.Position + s.Forward
+            bullet.Position = s.Position + Number3(1, 0, 0)
             bullet:SetParent(World)
         end
     end
