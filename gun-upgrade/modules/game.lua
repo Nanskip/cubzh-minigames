@@ -42,14 +42,14 @@ game.create_level = function(self, levels)
 
         level.choose = {}
         level.choose[1] = game:create_choose(i, {
-            action = math.random(-3, 3),
-            current = math.random(-3, 3)*10,
+            action = math.random(-2, 3),
+            current = math.random(-2, 3)*10,
             name = names[math.random(1, #names)],
             second = false
         })
         level.choose[2] = game:create_choose(i, {
-            action = math.random(-3, 3),
-            current = math.random(-3, 3)*10,
+            action = math.random(-2, 3),
+            current = math.random(-2, 3)*10,
             name = names[math.random(1, #names)],
             second = true
         })
