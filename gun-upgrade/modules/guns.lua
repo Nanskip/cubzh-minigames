@@ -10,7 +10,6 @@ function guns.create(self, config)
         reload_time = 1,
         damage = 1,
         type = "pistol",
-        ammo = 10,
         speed = 5,
         life = 3
     }
@@ -30,11 +29,19 @@ function guns.create(self, config)
     gun.speed = config.speed
     gun.life = config.life
 
+    gun.Scale = 0.5
     gun.Position = Number3(15, 10, 0)
-    gun.Tick = function(s)
-        s.Position = s.Position + s.Forward * s.speed*0.1
+    gun.Tick = function(s, dt)
+        s.Position = s.Position + s.Forward * s.speed*0.05
         if s.t ~= nil then
             s:t()
+        end
+
+        s.ticks = s.tick + dt
+        if s.ticks >= s.reload_time then
+            s.ticks = 0
+            local bullet = guns:bullet(s)
+            bullet.Position = s.Position + s.Forward
         end
     end
 
@@ -47,15 +54,17 @@ function guns.bullet(self, gun)
     bullet.speed = gun.speed
     bullet.life = gun.life
 
-    bullet.Tick = function(s)
+    bullet.Tick = function(s, dt)
         s.Position = s.Position + s.Forward * s.speed
-        s.life = s.life - 1
+        s.life = s.life - dt
         if s.life <= 0 then
             s:SetParent(nil)
             s.Tick = nil
             s = nil
         end
     end
+
+    return bullet
 end
 
 return guns
