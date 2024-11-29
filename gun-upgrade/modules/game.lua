@@ -83,6 +83,7 @@ function game.create_choose(self, level, config)
     choose.Physics = PhysicsMode.Trigger
     choose.current = cfg.current
     choose.action = cfg.action
+    choose.name = cfg.name
     choose.OnCollisionBegin = function(first, other)
         if other.type == "bullet" then
             other:remove()
