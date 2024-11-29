@@ -56,15 +56,20 @@ function guns.bullet(self, gun)
     bullet.damage = gun.damage
     bullet.speed = gun.speed
     bullet.life = gun.life
+    bullet.type = "bullet"
 
     bullet.Tick = function(s, dt)
         s.Position = s.Position + s.Forward * s.speed
         s.life = s.life - dt
         if s.life <= 0 then
-            s:SetParent(nil)
-            s.Tick = nil
-            s = nil
+            s:remove()
         end
+    end
+
+    bullet.remove = function(s)
+        s:SetParent(nil)
+        s.Tick = nil
+        s = nil
     end
 
     return bullet

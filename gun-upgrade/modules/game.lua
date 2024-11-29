@@ -12,7 +12,7 @@ game.INIT = function(self)
         local dx = payload.X - self.point.x
         local dy = payload.Y - self.point.y
         if game.gun ~= nil then
-            game.gun.Position = game.gun.Position + Number3(dx*20, 0, 0)
+            game.gun.Position = game.gun.Position + Number3(dx*30, 0, 0)
 
             if game.gun.Position.X < 0 then
                 game.gun.Position.X = 0
@@ -69,6 +69,17 @@ function game.create_choose(self, level, config)
     choose.Color = Color(255, 255, 255, 100)
     choose.Position = Number3(plus, 0, (level - 1 + 0.5) * 150)
     choose.Scale = Number3(15, 15, 1)
+    choose.Physics = PhysicsMode.Trigger
+    choose.current = cfg.current
+    choose.action = cfg.action
+    choose.OnCollisionBegin = function(first, other)
+        if other.type == "bullet" then
+            other:remove()
+
+            first.current = first.current + first.action
+            first:update()
+        end
+    end
     choose:SetParent(World)
 
     choose.pimpochka = Quad()
@@ -115,41 +126,47 @@ function game.create_choose(self, level, config)
     choose.action_text:SetParent(World)
 
     choose.current_text = Text()
-    local cur_text = ""
-    if cfg.current >= 0 then
-        cur_text = "+" .. cfg.current
-        choose.Color = Color(128, 255, 145, 100)
-        choose.pimpochka.Color = Color(128, 255, 145, 255)
-        choose.borders[1].Color = Color(128, 255, 145, 255)
-        choose.borders[2].Color = Color(128, 255, 145, 255)
-        choose.borders[3].Color = Color(128, 255, 145, 255)
-    else
-        cur_text = cfg.current
-        choose.Color = Color(204, 81, 59, 100)
-        choose.pimpochka.Color = Color(204, 81, 59, 255)
-        choose.borders[1].Color = Color(204, 81, 59, 255)
-        choose.borders[2].Color = Color(204, 81, 59, 255)
-        choose.borders[3].Color = Color(204, 81, 59, 255)
-    end
-    choose.current_text.Text = cur_text
     choose.current_text.Color = Color(255, 255, 255, 255)
     choose.current_text.BackgroundColor = Color(0, 0, 0, 0)
     choose.current_text.Position = Number3(7.5 + plus, 5, (level - 1 + 0.5) * 150 - 0.02)
     choose.current_text.Scale = 3
     choose.current_text:SetParent(World)
 
+    choose.update = function(s)
+        local cur_text = ""
+        if s.current >= 0 then
+            cur_text = "+" .. s.current
+            s.Color = Color(128, 255, 145, 100)
+            s.pimpochka.Color = Color(128, 255, 145, 255)
+            s.borders[1].Color = Color(128, 255, 145, 255)
+            s.borders[2].Color = Color(128, 255, 145, 255)
+            s.borders[3].Color = Color(128, 255, 145, 255)
+        else
+            cur_text = s.current
+            s.Color = Color(204, 81, 59, 100)
+            s.pimpochka.Color = Color(204, 81, 59, 255)
+            s.borders[1].Color = Color(204, 81, 59, 255)
+            s.borders[2].Color = Color(204, 81, 59, 255)
+            s.borders[3].Color = Color(204, 81, 59, 255)
+        end
+        s.current_text.Text = cur_text
+    end
+
+    choose:update()
+
     return choose
 end
 
 game.start = function(self)
     Camera:SetModeFree()
-    Camera.Rotation.X = 0.3
+    Camera.Rotation.X = 0.4
+    Camera.FOV = 35
     game:create_level(20)
 
     self.gun = guns:create()
     self.gun:SetParent(World)
     self.gun.t = function(s)
-        Camera.Position = Number3(15, 30, s.Position.Z - 45)
+        Camera.Position = Number3(15, 20, s.Position.Z - 45)
     end
 end
 
