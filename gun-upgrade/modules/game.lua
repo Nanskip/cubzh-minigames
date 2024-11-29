@@ -88,7 +88,7 @@ function game.create_choose(self, level, config)
         if other.type == "bullet" then
             other:remove()
 
-            first.current = first.current + first.action
+            first.current = first.current + first.action * other.damage
             first:update()
         elseif other.type == "gun" then
             if first.name == "Reload Time" then
@@ -179,14 +179,14 @@ function game.create_choose(self, level, config)
     choose.update = function(s)
         local cur_text = ""
         if s.current >= 0 then
-            cur_text = "+" .. s.current
+            cur_text = "+" .. math.round(s.current)
             s.Color = Color(128, 255, 145, 100)
             s.pimpochka.Color = Color(128, 255, 145, 255)
             s.borders[1].Color = Color(128, 255, 145, 255)
             s.borders[2].Color = Color(128, 255, 145, 255)
             s.borders[3].Color = Color(128, 255, 145, 255)
         else
-            cur_text = s.current
+            cur_text = math.round(s.current)
             s.Color = Color(204, 81, 59, 100)
             s.pimpochka.Color = Color(204, 81, 59, 255)
             s.borders[1].Color = Color(204, 81, 59, 255)

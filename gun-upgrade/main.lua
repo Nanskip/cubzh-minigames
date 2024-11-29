@@ -10,7 +10,7 @@ Config = {
 
 function Client.OnStart()
     _DEBUG = true
-    _HASH = "be1c31b"
+    _HASH = "be12693"
 
     _LATEST_LINK = "https://raw.githubusercontent.com/Nanskip/cubzh-minigames/" .. _HASH .. "/gun-upgrade/"
     _LOADALL()
@@ -139,4 +139,8 @@ function tableLength(t)
         count = count + 1
     end
     return count
+end
+
+math.round = function(num)
+    return math.floor(num + 0.5)
 end
