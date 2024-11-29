@@ -4,13 +4,13 @@ game.INIT = function(self)
     game.map = {}
     game:start()
     self.point = {x = 0, y = 0}
-    game.click = LocalEvent:Listen(LocalEvent.Name.PointerDragBegin, function(x, y)
-        self.point.x = x
-        self.point.y = y
+    game.click = LocalEvent:Listen(LocalEvent.Name.PointerDragBegin, function(payload)
+        self.point.x = payload.X
+        self.point.y = payload.Y
     end)
-    game.control = LocalEvent:Listen(LocalEvent.Name.PointerDrag, function(x, y)
-        local dx = x - self.point.x
-        local dy = y - self.point.y
+    game.control = LocalEvent:Listen(LocalEvent.Name.PointerDrag, function(payload)
+        local dx = payload.X - self.point.x
+        local dy = payload.Y - self.point.y
         if game.gun ~= nil then
             game.gun.Position = game.gun.Position + Number3(dx, 0, 0)
 
@@ -20,8 +20,8 @@ game.INIT = function(self)
                 game.gun.Position.X = 30
             end
         end
-        self.point.x = x
-        self.point.y = y
+        self.point.x = payload.X
+        self.point.y = payload.Y
     end)
 
     return true
