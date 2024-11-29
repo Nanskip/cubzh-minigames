@@ -4,6 +4,7 @@ game.INIT = function(self)
     game.map = {}
     game:start()
     game.control = LocalEvent:Listen(LocalEvent.Name.AnalogPad, function(dx, dy)
+        print("очко")
         if game.gun ~= nil then
             game.gun.Position = game.gun.Position + Number3(dx, 0, 0)
 
