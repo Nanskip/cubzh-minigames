@@ -43,6 +43,7 @@ function guns.create(self, config)
             s.ticks = 0
             local bullet = guns:bullet(s)
             bullet.Position = s.Position + s.Forward
+            bullet:SetParent(World)
         end
     end
 
