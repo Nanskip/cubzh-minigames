@@ -10,7 +10,7 @@ Config = {
 
 function Client.OnStart()
     _DEBUG = true
-    _HASH = "41ed760"
+    _HASH = "d839478"
 
     _LATEST_LINK = "https://raw.githubusercontent.com/Nanskip/cubzh-minigames/" .. _HASH .. "/gun-upgrade/"
     _LOADALL()
@@ -19,6 +19,7 @@ end
 _LOAD_LIST = {
     modules = {
         game = "modules/game.lua",
+        guns = "modules/guns.lua",
     },
     images = {
         icon = "images/icon.png",
