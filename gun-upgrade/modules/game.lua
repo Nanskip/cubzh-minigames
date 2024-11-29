@@ -166,7 +166,7 @@ game.start = function(self)
     self.gun = guns:create()
     self.gun:SetParent(World)
     self.gun.t = function(s)
-        Camera.Position = Number3(15, 20, s.Position.Z - 45)
+        Camera.Position = Number3(15, 30, s.Position.Z - 45)
     end
 end
 
