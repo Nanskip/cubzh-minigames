@@ -92,16 +92,18 @@ function game.create_choose(self, level, config)
             first:update()
         elseif other.type == "gun" then
             if first.name == "Reload Time" then
-                other.reload_time = other.reload_time - first.current*0.1
+                other.reload_time = other.reload_time - first.current*0.01
             elseif first.name == "Damage" then
-                other.damage = other.damage + first.current*0.1
+                other.damage = other.damage + first.current*0.01
             elseif first.name == "Speed" then
-                other.speed = other.speed + first.current*0.1
+                other.speed = other.speed + first.current*0.01
             elseif first.name == "Life" then
-                other.life = other.life + first.current*0.1
+                other.life = other.life + first.current*0.01
             else
                 log("Unknown gun setting.", "ERROR")
             end
+
+            first:remove()
         end
     end
     choose:SetParent(World)
@@ -155,6 +157,20 @@ function game.create_choose(self, level, config)
     choose.current_text.Position = Number3(7.5 + plus, 5, (level - 1 + 0.5) * 150 - 0.02)
     choose.current_text.Scale = 3
     choose.current_text:SetParent(World)
+
+    choose.remove = function(s)
+        s:SetParent(nil)
+        s.OnCollisionBegin = nil
+        s.borders[1]:SetParent(nil)
+        s.borders[2]:SetParent(nil)
+        s.borders[3]:SetParent(nil)
+        s.borders = nil
+        s.pimpochka:SetParent(nil)
+        s.action_text:SetParent(nil)
+        s.current_text:SetParent(nil)
+        s.name_text:SetParent(nil)
+        s = nil
+    end
 
     choose.update = function(s)
         local cur_text = ""
