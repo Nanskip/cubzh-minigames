@@ -92,8 +92,8 @@ function game.create_choose(self, level, config)
             first:update()
         elseif other.type == "gun" then
             if first.name == "Reload Time" then
-                other.reload_time = other.reload_time - (first.current / (1/other.reload_time))*0.01
-                log("Changed reload time to " .. other.reload_time .. ". Removed: " .. (first.current / (1/other.reload_time))*0.01)
+                other.reload_time = other.reload_time + first.current*0.01
+                log("Changed reload time to " .. other.reload_time .. ". Added: " .. first.current*0.01)
             elseif first.name == "Damage" then
                 other.damage = other.damage + first.current*0.01
                 log("Changed damage to " .. other.damage .. ". Added: " .. first.current*0.01)

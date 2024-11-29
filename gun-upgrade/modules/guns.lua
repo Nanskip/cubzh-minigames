@@ -40,7 +40,7 @@ function guns.create(self, config)
         end
 
         s.ticks = s.ticks + dt
-        if s.ticks >= s.reload_time then
+        if s.ticks >= 1/s.reload_time then
             s.ticks = 0
             local bullet = guns:bullet(s)
             bullet.Position = s.Position + Number3(0, 0.35, 1)
