@@ -10,7 +10,7 @@ function guns.create(self, config)
         reload_time = 1,
         damage = 1,
         type = "pistol",
-        speed = 5,
+        speed = 1,
         life = 3
     }
 
@@ -34,7 +34,7 @@ function guns.create(self, config)
     gun.Position = Number3(15, 10, 0)
     gun.Rotation.Y = math.pi
     gun.Tick = function(s, dt)
-        s.Position = s.Position + Number3(0, 0, 1) * s.speed*0.05
+        s.Position = s.Position + Number3(0, 0, 1) * 0.25
         if s.t ~= nil then
             s:t()
         end
