@@ -3,8 +3,14 @@ local game = {}
 game.INIT = function(self)
     game.map = {}
     game:start()
-    game.control = LocalEvent:Listen(LocalEvent.Name.AnalogPad, function(dx, dy)
-        print("очко")
+    self.point = {x = 0, y = 0}
+    game.click = LocalEvent:Listen(LocalEvent.Name.PointerDragBegin, function(x, y)
+        self.point.x = x
+        self.point.y = y
+    end)
+    game.control = LocalEvent:Listen(LocalEvent.Name.PointerDrag, function(x, y)
+        local dx = x - self.point.x
+        local dy = y - self.point.y
         if game.gun ~= nil then
             game.gun.Position = game.gun.Position + Number3(dx, 0, 0)
 
@@ -14,6 +20,8 @@ game.INIT = function(self)
                 game.gun.Position.X = 30
             end
         end
+        self.point.x = x
+        self.point.y = y
     end)
 
     return true
