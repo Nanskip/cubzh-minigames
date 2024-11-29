@@ -30,6 +30,15 @@ function guns.create(self, config)
     gun.speed = config.speed
     gun.life = config.life
 
+    gun.Rotation.Y = math.pi/2
+    gun.Position = Number3(15, 10, 0)
+    gun.Tick = function(s)
+        s.Position = s.Position + s.Forward * s.speed*0.1
+        if s.t ~= nil then
+            s:t()
+        end
+    end
+
     return gun
 end
 

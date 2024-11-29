@@ -2,11 +2,7 @@ local game = {}
 
 game.INIT = function(self)
     game.map = {}
-
-    game:create_level(5)
-    
-    --Camera:SetModeFree()
-    --Camera.Position = Number3(15, 100, 0)
+    game:start()
 
     return true
 end
@@ -84,7 +80,7 @@ function game.create_choose(self, level, config)
     choose.name_text.Text = cfg.name
     choose.name_text.Color = Color(255, 255, 255, 255)
     choose.name_text.BackgroundColor = Color(0, 0, 0, 0)
-    choose.name_text.Position = Number3(7.5 + plus, 12.5, (level - 1 + 0.5) * 150 - 0.01)
+    choose.name_text.Position = Number3(7.5 + plus, 12.5, (level - 1 + 0.5) * 150 - 0.02)
     choose.name_text.Scale = 1.3
     choose.name_text:SetParent(World)
 
@@ -94,7 +90,7 @@ function game.create_choose(self, level, config)
     choose.action_text.Text = act_text
     choose.action_text.Color = Color(255, 255, 255, 255)
     choose.action_text.BackgroundColor = Color(0, 0, 0, 0)
-    choose.action_text.Position = Number3(7.5 + plus, 16.5, (level - 1 + 0.5) * 150 - 0.01)
+    choose.action_text.Position = Number3(7.5 + plus, 16.5, (level - 1 + 0.5) * 150 - 0.02)
     choose.action_text.Scale = 1.2
     choose.action_text:SetParent(World)
 
@@ -118,7 +114,7 @@ function game.create_choose(self, level, config)
     choose.current_text.Text = cur_text
     choose.current_text.Color = Color(255, 255, 255, 255)
     choose.current_text.BackgroundColor = Color(0, 0, 0, 0)
-    choose.current_text.Position = Number3(7.5 + plus, 5, (level - 1 + 0.5) * 150 - 0.01)
+    choose.current_text.Position = Number3(7.5 + plus, 5, (level - 1 + 0.5) * 150 - 0.02)
     choose.current_text.Scale = 3
     choose.current_text:SetParent(World)
 
@@ -126,7 +122,13 @@ function game.create_choose(self, level, config)
 end
 
 game.start = function(self)
+    Camera:SetModeFree()
+    game:create_level(5)
 
+    local gun = guns:create()
+    gun.t = function(s)
+        Camera.Position = Number3(15, 100, s.Position.Z - 20)
+    end
 end
 
 return game
